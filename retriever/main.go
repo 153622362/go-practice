@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"time"
 	"go-practice/retriever/mock"
 	"go-practice/retriever/real"
+	"time"
 )
 
 //定义接口
