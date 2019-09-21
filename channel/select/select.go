@@ -40,10 +40,10 @@ func main() {
 	var worker = createWorker(0)
 
 	var values []int
-	tm := time.After(10 * time.Second)
-	tick := time.Tick(time.Second)
+	tm := time.After(10 * time.Second) //10秒后往这个channel发送数据
+	tick := time.Tick(time.Second)     //每秒都会发送数据给这个channel
 	for {
-		var activeWorker chan<- int
+		var activeWorker chan<- int //activeWork = nil channel
 		var activeValue int
 		if len(values) > 0 {
 			activeWorker = worker
@@ -55,7 +55,7 @@ func main() {
 			values = append(values, n)
 		case n := <-c2:
 			values = append(values, n)
-		case activeWorker <- activeValue:
+		case activeWorker <- activeValue: //nil channel的时候不会被select到 分发数据
 			values = values[1:]
 
 		case <-time.After(800 * time.Millisecond):

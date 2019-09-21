@@ -23,9 +23,9 @@ func (e userError) Message() string {
 func HandleFileList(writer http.ResponseWriter,
 	request *http.Request) error {
 	fmt.Println()
-	if strings.Index(
+	if strings.Index( //匹配路径
 		request.URL.Path, prefix) != 0 {
-		return userError(
+		return userError( //用户错误
 			fmt.Sprintf("path %s must start "+
 				"with %s",
 				request.URL.Path, prefix))

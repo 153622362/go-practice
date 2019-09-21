@@ -1,12 +1,13 @@
 package main
 
 import (
-	"./engine"
-	"./zhenai/parser"
-	"./scheduler"
-	"./persist"
+	"go-practice/crawler/engine"
+	"go-practice/crawler/persist"
+	"go-practice/crawler/scheduler"
+	"go-practice/crawler/zhenai/parser"
 )
-func main()  {
+
+func main() {
 	// 去重
 	// 重构
 	itemChan, err := persist.ItemSaver()
@@ -14,12 +15,12 @@ func main()  {
 		panic(err)
 	}
 	e := engine.ConcurrentEnine{
-		Scheduler:&scheduler.QueuedScheduler{},
+		Scheduler:   &scheduler.QueuedScheduler{},
 		WorkerCount: 100,
-		ItemChan: itemChan,
+		ItemChan:    itemChan,
 	}
 	e.Run(engine.Request{
-		Url: "http://www.zhenai.com/zhenghun",
+		Url:        "http://www.zhenai.com/zhenghun",
 		ParserFunc: parser.ParseCityList,
 	})
 }

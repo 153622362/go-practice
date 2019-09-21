@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func updateSlice(s []int) {
 	s[0] = 100
@@ -54,5 +56,5 @@ func main() {
 	// If we see undefined: sliceOps
 	// please try go run slices.go sliceops.go
 	fmt.Println("Uncomment to see sliceOps demo")
-	// sliceOps()
+	//sliceOps()
 }

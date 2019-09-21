@@ -3,7 +3,6 @@ package parser
 import (
 	"io/ioutil"
 	"testing"
-	"../parser"
 )
 
 func TestParseCityList(t *testing.T) {
@@ -15,8 +14,8 @@ func TestParseCityList(t *testing.T) {
 		panic(err)
 	}
 
-	result := parser.ParseCityList(contents)
-	const  resultSize  = 470
+	result := ParseCityList(contents)
+	const resultSize = 470
 	expectedUrls := []string{ //期望链接
 		"http://www.zhenai.com/zhenghun/aba", "http://www.zhenai.com/zhenghun/akesu", "http://www.zhenai.com/zhenghun/alashanmeng",
 	}
@@ -25,7 +24,7 @@ func TestParseCityList(t *testing.T) {
 	//}
 
 	if len(result.Requests) != resultSize {
-		t.Errorf("result should have %d" +
+		t.Errorf("result should have %d"+
 			"requests; but had %d", resultSize, len(result.Requests))
 	}
 

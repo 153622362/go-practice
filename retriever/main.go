@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-
 	"time"
-
-	"./mock"
-	"./real"
+	"go-practice/retriever/mock"
+	"go-practice/retriever/real"
 )
 
 //定义接口
@@ -52,6 +50,7 @@ func main() {
 	mockRetriever := mock.Retriever{
 		Contents: "this is a fake imooc.com"}
 	r = &mockRetriever
+
 	inspect(r)
 
 	r = &real.Retriever{

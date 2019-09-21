@@ -6,7 +6,7 @@ import (
 	"io"
 	"strings"
 
-	"./fib"
+	"go-practice/functional/fib"
 )
 
 type intGen func() int

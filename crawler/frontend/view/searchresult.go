@@ -1,9 +1,9 @@
 package view
 
 import (
+	"go-practice/crawler/frontend/model"
 	"html/template"
 	"io"
-	"../model"
 )
 
 type SearchResultView struct {
@@ -14,13 +14,13 @@ type SearchResultView struct {
 func CreateSearchResultView(
 	filename string) SearchResultView {
 	return SearchResultView{
-		temmlate:template.Must(
+		temmlate: template.Must(
 			template.ParseFiles(filename)),
 	}
 }
 
 //渲染视图
-func (s SearchResultView) Render (
+func (s SearchResultView) Render(
 	w io.Writer, data model.SearchResult) error {
 	return s.temmlate.Execute(w, data)
 }

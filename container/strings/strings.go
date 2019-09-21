@@ -6,8 +6,17 @@ import (
 )
 
 func main() {
+
+	angel := "Heros never die"
+
+	angleBytes := []byte(angel)
+
+	for i := 6; i <= 10; i++ {
+		angleBytes[i] = ' '
+	}
+	fmt.Println(string(angleBytes))
+
 	s := "Yes我爱慕课网!" // UTF-8
-	fmt.Println(s)
 
 	for _, b := range []byte(s) {
 		fmt.Printf("%X ", b)
@@ -25,7 +34,7 @@ func main() {
 	bytes := []byte(s)
 	for len(bytes) > 0 {
 		ch, size := utf8.DecodeRune(bytes)
-		bytes = bytes[size:]
+		bytes = bytes[size:] //切片
 		fmt.Printf("%c ", ch)
 	}
 	fmt.Println()

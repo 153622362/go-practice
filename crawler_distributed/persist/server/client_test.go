@@ -3,12 +3,12 @@ package main
 import (
 	"../../../crawler/engine"
 	"../../../crawler/model"
-	"../../rpcsupport"
 	"../../persist"
+	"../../rpcsupport"
+	"go-practice/crawler_distributed/config"
 	"gopkg.in/olivere/elastic.v5"
 	"testing"
 	"time"
-	"../../config"
 )
 
 func TestItemSaver(t *testing.T) {
@@ -39,7 +39,7 @@ func TestItemSaver(t *testing.T) {
 	}
 
 	result := ""
-	err = client.Call(config.ItemSaverRpc,item, &result)
+	err = client.Call(config.ItemSaverRpc, item, &result)
 
 	if err != nil || result != "ok" {
 		t.Errorf("result: %s; err: %s", result, err)
@@ -52,11 +52,11 @@ func serveRpc1(host, index string) error {
 		elastic.SetURL("http://192.168.199.102:9200"),
 		elastic.SetSniff(false))
 	if err != nil {
-		return  err
+		return err
 	}
 	return rpcsupport.ServeRpc(host,
 		&persist.ItemSaverService{
-			Client:client,
-			Index:index,
+			Client: client,
+			Index:  index,
 		})
 }

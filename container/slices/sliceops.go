@@ -7,6 +7,16 @@ func printSlice(s []int) {
 		s, len(s), cap(s))
 }
 
+func main() {
+	dst := []int{1, 2, 3}
+	src := []int{4, 5, 6, 7, 8}
+	n := copy(dst, src)
+
+	fmt.Printf("dst: %v %d %d , n: %d", dst, len(dst), cap(dst), n)
+
+	//sliceOps()
+}
+
 func sliceOps() {
 	fmt.Println("Creating slice")
 	var s []int // Zero value for slice is nil

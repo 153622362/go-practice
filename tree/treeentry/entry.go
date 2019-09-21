@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"../../tree"
+	"go-practice/tree"
 )
 
 type myTreeNode struct {
@@ -35,7 +35,7 @@ func main() {
 	root.Right.Left.SetValue(4)
 
 	fmt.Print("In-order traversal: ")
-	root.Traverse()
+	root.Traverse() //中序遍历
 
 	fmt.Print("My own post-order traversal: ")
 	myRoot := myTreeNode{&root}

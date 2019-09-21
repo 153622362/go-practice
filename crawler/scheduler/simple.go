@@ -1,10 +1,10 @@
 package scheduler
 
 import (
-	"../engine"
+	"go-practice/crawler/engine"
 )
 
-type SimpleScheduler struct{
+type SimpleScheduler struct {
 	workerChan chan engine.Request
 }
 
@@ -14,18 +14,18 @@ type SimpleScheduler struct{
 //}
 
 func (s *SimpleScheduler) WorkerReady(
-	w chan engine.Request)  {
+	w chan engine.Request) {
 }
 
-func (s *SimpleScheduler) Submit(r engine.Request)  {
+func (s *SimpleScheduler) Submit(r engine.Request) {
 	//send request down to worker chan
 	go func() { s.workerChan <- r }()
 }
 
 func (s *SimpleScheduler) WorkerChan() chan engine.Request {
-	return  s.workerChan
+	return s.workerChan
 }
 
-func (s *SimpleScheduler) Run()  {
+func (s *SimpleScheduler) Run() {
 	s.workerChan = make(chan engine.Request)
 }

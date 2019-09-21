@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"go-practice/rpc"
 	"net"
 	"net/rpc/jsonrpc"
-	"../../rpc"
 )
 
 func main() {

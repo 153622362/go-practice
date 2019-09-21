@@ -10,13 +10,14 @@ func readMaze(filename string) [][]int {
 	if err != nil {
 		panic(err)
 	}
-
+	defer file.Close()
 	var row, col int
-	fmt.Fscanf(file, "%d %d", &row, &col)
 
+	fmt.Fscanf(file, "%d %d", &row, &col)
 	maze := make([][]int, row) //数组初始化的长度 row是maze.in文件里的6
 	for i := range maze {
-		maze[i] = make([]int, col)  //创建一个数组 col多少列 col是maze.in文件里的5
+		fmt.Fscanf(file, "%d")
+		maze[i] = make([]int, col) //创建一个数组 col多少列 col是maze.in文件里的5
 		for j := range maze[i] {
 			fmt.Fscanf(file, "%d", &maze[i][j])
 		}
@@ -30,7 +31,10 @@ type point struct {
 }
 
 var dirs = [4]point{
-	{-1, 0}, {0, -1}, {1, 0}, {0, 1}}
+	{-1, 0},
+	{0, -1},
+	{1, 0},
+	{0, 1}}
 
 func (p point) add(r point) point {
 	return point{p.i + r.i, p.j + r.j}
@@ -48,6 +52,11 @@ func (p point) at(grid [][]int) (int, bool) {
 	return grid[p.i][p.j], true
 }
 
+/**
+maze 迷宫
+start 起点
+end 终点
+*/
 func walk(maze [][]int,
 	start, end point) [][]int {
 	steps := make([][]int, len(maze))
@@ -56,7 +65,6 @@ func walk(maze [][]int,
 	}
 
 	Q := []point{start} //创建切片
-
 	for len(Q) > 0 {
 		cur := Q[0] //0,0
 		Q = Q[1:]
@@ -97,12 +105,12 @@ func walk(maze [][]int,
 func main() {
 	maze := readMaze("maze/maze.in")
 
-	//for _, row := range maze {
-	//	for _, val := range row{
-	//		fmt.Printf("%d ", val)
-	//	}
-	//	fmt.Println()
-	//}
+	for _, row := range maze {
+		for _, val := range row {
+			fmt.Printf("%d ", val)
+		}
+		fmt.Println()
+	}
 
 	//point{0,0}使用结构体
 	/* maze 迷宫多维数组

@@ -4,8 +4,11 @@ import "fmt"
 
 func printArray(arr [5]int) {
 	arr[0] = 100
-	for i, v := range arr {
-		fmt.Println(i, v)
+	for i := range arr {
+		if i == 2 {
+			arr[i] = 20
+		}
+		fmt.Println(i, arr[i])
 	}
 }
 
@@ -20,7 +23,7 @@ func main() {
 	fmt.Println(grid)
 
 	fmt.Println("printArray(arr1)")
-	printArray(arr1)
+	printArray(arr3)
 
 	fmt.Println("printArray(arr3)")
 	printArray(arr3)

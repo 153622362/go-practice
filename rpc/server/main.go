@@ -1,10 +1,10 @@
 package main
 
 import (
+	"go-practice/rpc"
 	"log"
 	"net"
 	"net/rpc"
-		"../../rpc"
 	"net/rpc/jsonrpc"
 )
 
@@ -22,6 +22,7 @@ func main() {
 		if err != nil {
 			log.Printf("accept error: %v", err)
 		}
+
 		go jsonrpc.ServeConn(conn)
 	}
 }

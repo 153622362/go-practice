@@ -1,8 +1,8 @@
 package parser
 
 import (
-	"../../engine"
-	"../../model"
+	"go-practice/crawler/engine"
+	"go-practice/crawler/model"
 	"regexp"
 	"strconv"
 	"strings"
@@ -26,7 +26,7 @@ var profileRe = regexp.MustCompile(`<div[^>]+>([^>]+ [0-9]+岁 [^<]+)</div>`)
 
 var idUrlRe = regexp.MustCompile(`http://album.zhenai.com/u/([\d]+)`)
 
-func ParseProfile( contents []byte, url string,
+func ParseProfile(contents []byte, url string,
 	name string) engine.ParseResult {
 	profile := model.Profile{}
 	profile.Name = name
@@ -35,6 +35,9 @@ func ParseProfile( contents []byte, url string,
 		return engine.ParseResult{}
 	}
 	s := strings.Split(string(profilec[1]), "|")
+
+	//fmt.Println(s[1])
+	//fmt.Println("sss")
 	age, err := strconv.Atoi(string(numberRe.FindSubmatch([]byte(s[1]))[0]))
 	if err == nil {
 		profile.Age = age
@@ -51,22 +54,22 @@ func ParseProfile( contents []byte, url string,
 	result := engine.ParseResult{
 		Items: []engine.Item{
 			{
-				Url:url,
-				Type: "zhenai", //elastirsearch 表名
-				Id: extractString([]byte(url), idUrlRe),
-				Payload:profile,
+				Url:     url,
+				Type:    "zhenai", //elastirsearch 表名
+				Id:      extractString([]byte(url), idUrlRe),
+				Payload: profile,
 			},
 		},
 	}
-	return  result
+	return result
 }
 
 func extractString(
-	contents []byte, re *regexp.Regexp)  string {
+	contents []byte, re *regexp.Regexp) string {
 	match := re.FindSubmatch(contents)
 	if len(match) >= 2 {
 		return string(match[1])
-	}else {
+	} else {
 		return ""
 	}
 }

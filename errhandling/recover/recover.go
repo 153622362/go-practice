@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -13,6 +14,7 @@ func tryRecover() {
 				"below.")
 			return
 		}
+
 		if err, ok := r.(error); ok {
 			fmt.Println("Error occurred:", err)
 		} else {
@@ -24,12 +26,11 @@ func tryRecover() {
 	// Uncomment each block to see different panic
 	// scenarios.
 	// Normal error
-	//panic(errors.New("this is an error"))
+	panic(errors.New("this is an error"))
 
-	// Division by zero
+	//Division by zero
 	//b := 0
 	//a := 5 / b
-	//fmt.Println(a)
 
 	// Causes re-panic
 	//panic(123)

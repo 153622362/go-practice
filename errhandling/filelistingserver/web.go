@@ -6,12 +6,15 @@ import (
 	_ "net/http/pprof"
 	"os"
 
-	"imooc.com/ccmouse/learngo/errhandling/filelistingserver/filelisting"
+	"go-practice/errhandling/filelistingserver/filelisting"
 )
 
 type appHandler func(writer http.ResponseWriter,
 	request *http.Request) error
 
+/**
+统一错误处理
+*/
 func errWrapper(
 	handler appHandler) func(
 	http.ResponseWriter, *http.Request) {

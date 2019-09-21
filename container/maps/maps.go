@@ -16,7 +16,6 @@ func main() {
 
 	fmt.Println("m, m2, m3:")
 	fmt.Println(m, m2, m3)
-
 	fmt.Println("Traversing map m")
 	for k, v := range m {
 		fmt.Println(k, v)
@@ -25,6 +24,7 @@ func main() {
 	fmt.Println("Getting values")
 	courseName := m["course"]
 	fmt.Println(`m["course"] =`, courseName)
+
 	if causeName, ok := m["cause"]; ok {
 		fmt.Println(causeName)
 	} else {

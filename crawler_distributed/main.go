@@ -9,7 +9,6 @@ import (
 	"./config"
 )
 func main()  {
-
 	itemChan, err := client.ItemSaver(fmt.Sprintf(":%d",config.ItemSaverPort))
 	if err != nil {
 		panic(err)

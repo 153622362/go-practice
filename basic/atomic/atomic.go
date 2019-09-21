@@ -14,7 +14,7 @@ type atomicInt struct {
 func (a *atomicInt) increment() {
 	fmt.Println("safe increment")
 	func() {
-		a.lock.Lock()
+		a.lock.Lock() //传统的同步机制
 		defer a.lock.Unlock()
 		a.value++
 	}()
@@ -28,9 +28,8 @@ func (a *atomicInt) get() int {
 }
 
 func main() {
-
-	for i:=0 ;i<5;i++{
-		defer fmt.Printf("%d",i)
+	for i := 0; i < 5; i++ {
+		defer fmt.Printf("%d", i)
 		fmt.Println("bbbbb")
 	}
 

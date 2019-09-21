@@ -1,18 +1,19 @@
 package parser
 
 import (
-	"../../engine"
+	"go-practice/crawler/engine"
 	"regexp"
 )
+
 //const cityRe  = `<a href="(http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`
 var (
-		profile1Re  = regexp.MustCompile(`<a href="(http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`)
-	   //cityUrlRe = regexp.MustCompile(
-	   //	`href="(http://www.zhenai.com/zhenghun/[^"]+)"`)
+	profile1Re = regexp.MustCompile(`<a href="(http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`)
+	//cityUrlRe = regexp.MustCompile(
+	//	`href="(http://www.zhenai.com/zhenghun/[^"]+)"`)
 )
 
 func parseCity(contents []byte) engine.ParseResult {
-	matches := profile1Re.FindAllSubmatch(contents , -1)
+	matches := profile1Re.FindAllSubmatch(contents, -1)
 
 	result := engine.ParseResult{}
 	for _, m := range matches {
@@ -21,8 +22,8 @@ func parseCity(contents []byte) engine.ParseResult {
 		//	result.Items, "User " + name)
 		url := string(m[1])
 		result.Requests = append(result.Requests, engine.Request{
-			Url: 				url,
-			ParserFunc : func(c []byte) engine.ParseResult {
+			Url: url,
+			ParserFunc: func(c []byte) engine.ParseResult {
 				return ParseProfile(c, url, name)
 			},
 		})

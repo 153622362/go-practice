@@ -51,7 +51,25 @@ func swap(a, b int) (int, int) {
 	return b, a
 }
 
+//practice
+func sum2(numbers ...int) int {
+	s := 0
+	for i := range numbers {
+		s += numbers[i]
+	}
+	return s
+}
+
+func swap2(a, b int) (int, int) {
+	return b, a
+}
+
 func main() {
+	fmt.Printf("%d", sum2(1, 2, 3, 4, 5, 6))
+	c, d := swap2(4, 3)
+	fmt.Printf("%d %d", c, d)
+	return
+
 	fmt.Println("Error handling")
 	if result, err := eval(3, 4, "x"); err != nil {
 		fmt.Println("Error:", err)
